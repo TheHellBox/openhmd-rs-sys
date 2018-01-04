@@ -1,6 +1,6 @@
 [package]
 name = "openhmd-rs-sys"
 version = "0.1.0"
-authors = ["TheHellBox <hellboxstudio@yandex.ru>"]
+authors = ["TheHellBox <thehellbox11@gmail.com>"]
 [dependencies]
 libc = "*"
