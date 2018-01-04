@@ -1,11 +1,13 @@
 extern crate libc;
-use libc::{c_char, c_int, c_float};
+use libc::{c_char, c_int, c_float, c_void};
 #[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ohmd_context;
+pub struct ohmd_context {
+    __private: c_void
+}
 #[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ohmd_device;
+pub struct ohmd_device {
+    __private: c_void
+}
 
 #[repr(C)]
 #[allow(non_camel_case_types)]
