@@ -1,2 +1,2 @@
 # openhmd-rs
-OpenHMD Bindings(http://www.openhmd.net/)
+unsafe OpenHMD Bindings(http://www.openhmd.net/)
