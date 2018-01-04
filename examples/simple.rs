@@ -10,7 +10,7 @@ fn main(){
         let device = ohmd_list_open_device(context, 0);
         ohmd_ctx_update(context);
         let mut out: [c_float; 16] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0, 0.0];
-        let output = ohmd_device_getf(device, ohmd_float_value::OHMD_ROTATION_QUAT, &out);
+        let output = ohmd_device_getf(device, ohmd_float_value::OHMD_ROTATION_QUAT, &mut out);
         println!("{:?} {}", out, output);
     }
 }
