@@ -1,0 +1,6 @@
+[package]
+name = "openhmd-rs"
+version = "0.1.0"
+authors = ["TheHellBox <hellboxstudio@yandex.ru>"]
+[dependencies]
+libc = "*"
