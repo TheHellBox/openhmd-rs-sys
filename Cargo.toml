@@ -4,5 +4,6 @@ version = "0.1.0"
 description="Unsafe OpenHMD bindings"
 license="MIT"
 authors = ["TheHellBox <thehellbox11@gmail.com>"]
+repository = "https://github.com/TheHellBox/openhmd-rs-sys"
 [dependencies]
 libc = "0.2.35"
