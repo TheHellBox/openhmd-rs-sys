@@ -1,2 +1,5 @@
 # openhmd-rs
-unsafe OpenHMD Bindings(http://www.openhmd.net/)
+Unsafe OpenHMD Bindings(http://www.openhmd.net/)
+
+
+https://crates.io/crates/openhmd-rs-sys
