@@ -3,6 +3,7 @@ extern crate libc;
 use openhmd_rs_sys::*;
 use libc::{c_int, c_float};
 use std::ffi::CStr;
+use std::time::Duration;
 fn main(){
     unsafe{
         let context = ohmd_ctx_create();
@@ -56,9 +57,14 @@ fn main(){
         println!("right eye aspect:        {:.6}", right_eye_aspect);
         println!("");
 
-        ohmd_ctx_update(context);
-        let output = ohmd_device_getf(device, ohmd_float_value::OHMD_ROTATION_QUAT, &mut out);
-        println!("{:?} {}", out, output);
+        for _i in 0 .. 10000 {
+            ohmd_ctx_update(context);
+            ohmd_device_getf(device, ohmd_float_value::OHMD_ROTATION_QUAT, &mut out);
+            println!("rotation quat:           {:.6} {:.6} {:.6} {:.6}", out[0], out[1], out[2], out[3]);
+            ohmd_device_getf(device, ohmd_float_value::OHMD_POSITION_VECTOR, &mut out);
+            println!("position vec:            {:.6} {:.6} {:.6}", out[0], out[1], out[2]);
+            std::thread::sleep(Duration::from_millis(10));
+        }
 
         ohmd_close_device(device);
         ohmd_ctx_destroy(context);
