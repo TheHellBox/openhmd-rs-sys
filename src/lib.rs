@@ -53,12 +53,12 @@ pub enum ohmd_int_value{
 extern {
     pub fn ohmd_ctx_create() -> &'static ohmd_context;
     pub fn ohmd_ctx_destroy(ctx: &ohmd_context);
-    pub fn ohmd_ctx_get_error(ctx: &ohmd_context) -> c_char;
+    pub fn ohmd_ctx_get_error(ctx: &ohmd_context) -> *const c_char;
     pub fn ohmd_ctx_probe(ctx: &ohmd_context) -> c_int;
     pub fn ohmd_ctx_update(ctx: &ohmd_context);
     pub fn ohmd_device_getf(device: &ohmd_device, otype: ohmd_float_value, out: &mut [c_float; 16]) -> c_int;
     pub fn ohmd_device_setf(device: &ohmd_device, otype: ohmd_float_value, float: &[c_float; 16]) -> c_int;
     pub fn ohmd_list_open_device(ctx: &ohmd_context, index: c_int) -> &'static ohmd_device;
-    pub fn ohmd_list_gets(ctx: &ohmd_context, index: c_int, otype: ohmd_string_value) -> c_char;
+    pub fn ohmd_list_gets(ctx: &ohmd_context, index: c_int, otype: ohmd_string_value) -> *const c_char;
     pub fn ohmd_device_geti(device: &ohmd_device, otype: ohmd_int_value, out: &mut [c_int; 1]) -> c_int;
 }
