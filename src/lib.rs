@@ -61,4 +61,5 @@ extern {
     pub fn ohmd_list_open_device(ctx: &ohmd_context, index: c_int) -> &'static ohmd_device;
     pub fn ohmd_list_gets(ctx: &ohmd_context, index: c_int, otype: ohmd_string_value) -> *const c_char;
     pub fn ohmd_device_geti(device: &ohmd_device, otype: ohmd_int_value, out: &mut [c_int; 1]) -> c_int;
+    pub fn ohmd_close_device(device: &ohmd_device) -> c_int;
 }
