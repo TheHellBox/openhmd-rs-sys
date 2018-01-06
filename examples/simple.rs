@@ -12,5 +12,8 @@ fn main(){
         let mut out: [c_float; 16] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0, 0.0];
         let output = ohmd_device_getf(device, ohmd_float_value::OHMD_ROTATION_QUAT, &mut out);
         println!("{:?} {}", out, output);
+
+        ohmd_close_device(device);
+        ohmd_ctx_destroy(context);
     }
 }
