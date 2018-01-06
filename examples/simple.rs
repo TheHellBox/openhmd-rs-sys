@@ -1,7 +1,7 @@
 extern crate openhmd_rs_sys;
 extern crate libc;
 use openhmd_rs_sys::*;
-use libc::c_float;
+use libc::{c_int, c_float};
 use std::ffi::CStr;
 fn main(){
     unsafe{
@@ -20,9 +20,43 @@ fn main(){
             println!("");
         }
 
+        println!("opening device: {}", 0);
         let device = ohmd_list_open_device(context, 0);
+        let mut out: [c_int; 1] = [0];
+        ohmd_device_geti(device, ohmd_int_value::OHMD_SCREEN_HORIZONTAL_RESOLUTION, &mut out);
+        let width = out[0];
+        ohmd_device_geti(device, ohmd_int_value::OHMD_SCREEN_VERTICAL_RESOLUTION, &mut out);
+        let height = out[0];
+        let mut out: [c_float; 16] = [0.0; 16];
+        ohmd_device_getf(device, ohmd_float_value::OHMD_SCREEN_HORIZONTAL_SIZE, &mut out);
+        let hsize = out[0];
+        ohmd_device_getf(device, ohmd_float_value::OHMD_SCREEN_VERTICAL_SIZE, &mut out);
+        let vsize = out[0];
+        ohmd_device_getf(device, ohmd_float_value::OHMD_LENS_HORIZONTAL_SEPARATION, &mut out);
+        let lens_separation = out[0];
+        ohmd_device_getf(device, ohmd_float_value::OHMD_LENS_VERTICAL_POSITION, &mut out);
+        let lens_vcenter = out[0];
+        ohmd_device_getf(device, ohmd_float_value::OHMD_LEFT_EYE_FOV, &mut out);
+        let left_eye_fov = out[0];
+        ohmd_device_getf(device, ohmd_float_value::OHMD_RIGHT_EYE_FOV, &mut out);
+        let right_eye_fov = out[0];
+        ohmd_device_getf(device, ohmd_float_value::OHMD_LEFT_EYE_ASPECT_RATIO, &mut out);
+        let left_eye_aspect = out[0];
+        ohmd_device_getf(device, ohmd_float_value::OHMD_RIGHT_EYE_ASPECT_RATIO, &mut out);
+        let right_eye_aspect = out[0];
+
+        println!("resolution:              {} x {}", width, height);
+        println!("hsize:                   {:.6}", hsize);
+        println!("vsize:                   {:.6}", vsize);
+        println!("lens separation:         {:.6}", lens_separation);
+        println!("lens vcenter:            {:.6}", lens_vcenter);
+        println!("left eye fov:            {:.6}", left_eye_fov);
+        println!("right eye fov:           {:.6}", right_eye_fov);
+        println!("left eye aspect:         {:.6}", left_eye_aspect);
+        println!("right eye aspect:        {:.6}", right_eye_aspect);
+        println!("");
+
         ohmd_ctx_update(context);
-        let mut out: [c_float; 16] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0, 0.0];
         let output = ohmd_device_getf(device, ohmd_float_value::OHMD_ROTATION_QUAT, &mut out);
         println!("{:?} {}", out, output);
 
