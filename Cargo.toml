@@ -1,6 +1,6 @@
 [package]
 name = "openhmd-rs-sys"
-version = "0.1.3"
+version = "0.1.4"
 description="Unsafe OpenHMD bindings"
 license="MIT"
 authors = ["TheHellBox <thehellbox11@gmail.com>"]
