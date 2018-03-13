@@ -30,7 +30,11 @@ pub enum ohmd_float_value{
     OHMD_EYE_IPD = 15,
     OHMD_PROJECTION_ZFAR = 16,
     OHMD_PROJECTION_ZNEAR = 17,
-    OHMD_DISTORTION_K = 18
+    OHMD_DISTORTION_K = 18,
+    OHMD_EXTERNAL_SENSOR_FUSION = 19,
+    OHMD_UNIVERSAL_DISTORTION_K = 20,
+    OHMD_UNIVERSAL_ABERRATION_K = 21,
+    OHMD_CONTROLS_STATE = 22
 }
 
 #[repr(C)]
@@ -47,8 +51,14 @@ pub enum ohmd_string_value{
 #[derive(Clone, Copy)]
 pub enum ohmd_int_value{
     OHMD_SCREEN_HORIZONTAL_RESOLUTION = 0,
-    OHMD_SCREEN_VERTICAL_RESOLUTION = 1
+    OHMD_SCREEN_VERTICAL_RESOLUTION = 1,
+    OHMD_DEVICE_CLASS = 2,
+    OHMD_DEVICE_FLAGS = 3,
+    OHMD_CONTROL_COUNT = 4,
+    OHMD_CONTROLS_HINTS = 5,
+    OHMD_CONTROLS_TYPES = 6
 }
+
 #[link(name = "openhmd")]
 extern {
     pub fn ohmd_ctx_create() -> &'static ohmd_context;
