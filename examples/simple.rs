@@ -14,10 +14,23 @@ fn main(){
             let vendor = ohmd_list_gets(context, i, ohmd_string_value::OHMD_VENDOR);
             let product = ohmd_list_gets(context, i, ohmd_string_value::OHMD_PRODUCT);
             let path = ohmd_list_gets(context, i, ohmd_string_value::OHMD_PATH);
+            let mut out: [c_int; 1] = [0; 1];
+            ohmd_list_geti(context, i, ohmd_int_value::OHMD_DEVICE_CLASS, &mut out);
+            let device_class_s = [ "HMD", "Controller", "Generic Tracker", "Unknown" ];
+            let class = out[0] as usize;
+            ohmd_list_geti(context, i, ohmd_int_value::OHMD_DEVICE_FLAGS, &mut out);
+            let flags = out[0];
             println!("device {}", i);
             println!("  vendor:  {}", CStr::from_ptr(vendor).to_str().unwrap());
             println!("  product: {}", CStr::from_ptr(product).to_str().unwrap());
             println!("  path:    {}", CStr::from_ptr(path).to_str().unwrap());
+            println!("  class:   {}", device_class_s[if class > 3 { 3 } else { class }]);
+            println!("  flags:   {:02x}", flags);
+            println!("    null device:         {}", if flags & OHMD_DEVICE_FLAGS_NULL_DEVICE != 0 { "yes" } else { "no" });
+            println!("    rotational tracking: {}", if flags & OHMD_DEVICE_FLAGS_ROTATIONAL_TRACKING != 0 { "yes" } else { "no" });
+            println!("    positional tracking: {}", if flags & OHMD_DEVICE_FLAGS_POSITIONAL_TRACKING != 0 { "yes" } else { "no" });
+            println!("    left controller:     {}", if flags & OHMD_DEVICE_FLAGS_LEFT_CONTROLLER != 0 { "yes" } else { "no" });
+            println!("    right controller:    {}", if flags & OHMD_DEVICE_FLAGS_RIGHT_CONTROLLER != 0 { "yes" } else { "no" });
             println!("");
         }
 
