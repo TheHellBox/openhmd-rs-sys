@@ -71,6 +71,33 @@ pub enum ohmd_string_description{
 #[repr(C)]
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy)]
+pub enum ohmd_control_hint{
+    OHMD_GENERIC = 0,
+    OHMD_TRIGGER = 1,
+    OHMD_TRIGGER_CLICK = 2,
+    OHMD_SQUEEZE = 3,
+    OHMD_MENU = 4,
+    OHMD_HOME = 5,
+    OHMD_ANALOG_X = 6,
+    OHMD_ANALOG_Y = 7,
+    OHMD_ANALOG_PRESS = 8,
+    OHMD_BUTTON_A = 9,
+    OHMD_BUTTON_B = 10,
+    OHMD_BUTTON_X = 11,
+    OHMD_BUTTON_Y = 12
+}
+
+#[repr(C)]
+#[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
+pub enum ohmd_control_type{
+    OHMD_DIGITAL = 0,
+    OHMD_ANALOG = 1
+}
+
+#[repr(C)]
+#[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
 pub enum ohmd_int_value{
     OHMD_SCREEN_HORIZONTAL_RESOLUTION = 0,
     OHMD_SCREEN_VERTICAL_RESOLUTION = 1,
