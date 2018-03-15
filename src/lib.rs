@@ -40,6 +40,18 @@ pub enum ohmd_float_value{
 #[repr(C)]
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy)]
+pub enum ohmd_status{
+    OHMD_S_OK = 0,
+    OHMD_S_UNKNOWN_ERROR = -1,
+    OHMD_S_INVALID_PARAMETER = -2,
+    OHMD_S_UNSUPPORTED = -3,
+    OHMD_S_INVALID_OPERATION = -4,
+    OHMD_S_USER_RESERVED = -16384
+}
+
+#[repr(C)]
+#[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
 pub enum ohmd_string_value{
     OHMD_VENDOR = 0,
     OHMD_PRODUCT = 1,
