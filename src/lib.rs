@@ -61,6 +61,16 @@ pub enum ohmd_string_value{
 #[repr(C)]
 #[allow(non_camel_case_types)]
 #[derive(Clone, Copy)]
+pub enum ohmd_string_description{
+    OHMD_GLSL_DISTORTION_VERT_SRC = 0,
+    OHMD_GLSL_DISTORTION_FRAG_SRC = 1,
+    OHMD_GLSL_330_DISTORTION_VERT_SRC = 2,
+    OHMD_GLSL_330_DISTORTION_FRAG_SRC = 3,
+}
+
+#[repr(C)]
+#[allow(non_camel_case_types)]
+#[derive(Clone, Copy)]
 pub enum ohmd_int_value{
     OHMD_SCREEN_HORIZONTAL_RESOLUTION = 0,
     OHMD_SCREEN_VERTICAL_RESOLUTION = 1,
@@ -78,6 +88,7 @@ extern {
     pub fn ohmd_ctx_get_error(ctx: &ohmd_context) -> *const c_char;
     pub fn ohmd_ctx_probe(ctx: &ohmd_context) -> c_int;
     pub fn ohmd_ctx_update(ctx: &ohmd_context);
+    pub fn ohmd_gets(stype: ohmd_string_description, out: &mut *const c_char) -> c_int;
     pub fn ohmd_device_getf(device: &ohmd_device, otype: ohmd_float_value, out: &mut [c_float; 16]) -> c_int;
     pub fn ohmd_device_setf(device: &ohmd_device, otype: ohmd_float_value, float: &[c_float; 16]) -> c_int;
     pub fn ohmd_list_open_device(ctx: &ohmd_context, index: c_int) -> &'static ohmd_device;
